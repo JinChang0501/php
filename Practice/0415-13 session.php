@@ -18,10 +18,7 @@ session_start();
     } else {
         $_SESSION['num'] = 1;
     }
-
     ?>
-
-
     <h2><?= $_SESSION['num'] ?></h2>
 
 </body>
