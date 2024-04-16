@@ -3,11 +3,11 @@ session_start();
 
 $users = [
     'shin' => [
-        'pw' => '0000',
+        'pw' => '2345',
         'nickname' => '小新'
     ],
     'ming' => [
-        'pw' => '1111',
+        'pw' => '3456',
         'nickname' => '大明'
     ],
 ];
@@ -47,24 +47,25 @@ if (!empty($_POST)) {
 </head>
 
 <body>
-    <?php if (isset($_SESSION['admin'])) : ?>
-        <h2><?= $_SESSION['admin']['nickname'] ?> 泥好</h2>
-        <p><a href="./0416-04-logout.php">登出</a></p>
-    <?php else : ?>
+    <?php /*
+<pre><?php
+if (!empty($_POST)) {
+# 如果送過來的表單不是空的
+print_r($_POST);
+}
+?></pre>
+*/ ?>
 
-        <div><?= isset($errInfo) ? $errInfo : '' ?></div>
-
-        <form method="post">
-            <input type="text" name="account" placeholder="帳號" value="<?= htmlentities($_POST['account'] ?? '') ?>">
-            <br>
-            <input type="password" name="password" placeholder="密碼" value="<?= htmlentities($_POST['password'] ?? '') ?>">
-            <br>
-            <input type="submit">
-        </form>
-    <?php endif ?>
-
-
-
+    <form method="post">
+        <input type="text" name="account" placeholder="帳號" value="<?= htmlentities($_POST['account'] ?? '') ?>">
+        <br>
+        <input type="password" name="password" placeholder="密碼" value="<?= htmlentities($_POST['password'] ?? '') ?>">
+        <br>
+        <input type="submit">
+    </form>
+    <!--
+  &lt;div&gt;
+-->
 </body>
 
 </html>
