@@ -1,8 +1,4 @@
 <?php
-$title = '通訊錄列表';
-$pageName = 'list';
-
-
 
 require __DIR__ . './../config/pdo-connect.php';
 
@@ -59,18 +55,7 @@ include __DIR__ . "/part/navbar.php";
         <div class="col">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <!-- arrow left start -->
-                    <li class="page-item ">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angles-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item ">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angle-left"></i>
-                        </a>
-                    </li>
-                    <!-- arrow left end -->
+
                     <?php for ($i = $page - 5; $i <= $page + 5; $i++) :
                         if ($i >= 1 and $i <= $totalPages) : ?>
                             <li class="page-item <?php $page == $i ? 'active' : '' ?>">
@@ -78,18 +63,6 @@ include __DIR__ . "/part/navbar.php";
                             </li>
                     <?php endif;
                     endfor; ?>
-                    <!-- arrow right start -->
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angles-right"></i>
-                        </a>
-                    </li>
-                    <!-- arrow right end -->
                 </ul>
             </nav>
         </div>
@@ -100,28 +73,23 @@ include __DIR__ . "/part/navbar.php";
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th scope="col"><i class="fa-solid fa-trash"></i></th>
                         <th scope="col">#</th>
                         <th scope="col">name</th>
                         <th scope="col">Email</th>
                         <th scope="col">mobile</th>
                         <th scope="col">birthday</th>
                         <th scope="col">address</th>
-                        <!-- 避免xss  strip_tags/htmlentities-->
-                        <th scope="col"><i class="fa-solid fa-pen-to-square"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $r) : ?>
                         <tr>
-                            <td><a href="delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
                             <td><?= $r['email'] ?></td>
                             <td><?= $r['mobile'] ?></td>
                             <td><?= $r['birthday'] ?></td>
-                            <td><?= htmlentities($r['address']) ?></td>
-                            <td><a href="delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><?= $r['address'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
