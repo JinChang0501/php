@@ -25,13 +25,7 @@ if ($birthday === false) {
 }
 
 
-$sql = "INSERT INTO `address_book`(
-  `name`, `email`, `mobile`, `birthday`, `address`, `created_at`) VALUES (
-    ?,
-    ?,
-    ?,
-    ?,
-    ?, NOW() )";
+$sql = "UPDATE `address_book` SET `name`=?,`email`=?,`mobile`=?,`birthday`=?,`address`=? WHERE sid=?";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
@@ -39,11 +33,11 @@ $stmt->execute([
     $_POST['email'],
     $_POST['mobile'],
     $birthday,
-    $_POST['address']
+    $_POST['address'],
+    $_POST['sid'],
 ]);
 
 
-$output['success'] = !!$stmt->rowCount(); # 新增了幾筆
-$output['newId'] = $pdo->lastInsertId(); # 取得最近的新增資料的primary key
+$output['success'] = !!$stmt->rowCount(); # 修改了幾筆
 
 echo json_encode($output);

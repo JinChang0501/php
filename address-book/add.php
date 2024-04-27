@@ -1,4 +1,11 @@
 <?php
+require __DIR__ . '/admin-required.php';
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+
 $title = '新增列表';
 $pageName = 'add';
 ?>
@@ -119,7 +126,7 @@ $pageName = 'add';
                 }).then(r => r.json())
                 .then(data => {
                     console.log(data);
-                    if (data.sucsess) {
+                    if (data.success) {
                         myModal.show();
                     } else {
 
